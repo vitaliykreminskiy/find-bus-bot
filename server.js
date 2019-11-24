@@ -5,7 +5,6 @@ const request = require('request');
 const iconv = require('iconv-lite');
 const bot = new Telegraf(process.env.TOKEN);
 const express = require('express');
-const app = express();
 
 
 let endpoint = 'http://bus.com.ua/cgi-bin/tablo.pl?as=610100';
@@ -88,13 +87,6 @@ bot.command('getbuses', function(message) {
       )
 })
 
-app.get('/', (req, res) => {
-    res.send('My bot is running here, get out');
-});
-
-app.listen(process.env.PORT, function() {
-    console.log(`Server running on port ${process.env.PORT}`);
-});
-
+bot.startPolling();
 
 
