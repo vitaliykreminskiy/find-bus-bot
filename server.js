@@ -6,6 +6,11 @@ const iconv = require('iconv-lite');
 const bot = new Telegraf(process.env.TOKEN);
 const express = require('express');
 
+process
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT', shutdown('SIGINT'))
+  .on('uncaughtException', shutdown('uncaughtException'));
+
 
 let endpoint = 'http://bus.com.ua/cgi-bin/tablo.pl?as=610100';
 
