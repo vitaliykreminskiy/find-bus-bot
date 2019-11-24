@@ -46,9 +46,6 @@ function beautifyRoutesData(data) {
     return result;
 }
 
-bot.telegram.setWebhook(`${process.env.URL}/bot${process.env.TOKEN}`);
-app.use(bot.webhookCallback(`${process.env.URL}/bot${process.env.TOKEN}`));
-
 bot.start(function(message){
     message.reply('Go home darling');
 });
