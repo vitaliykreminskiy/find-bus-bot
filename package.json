@@ -1,0 +1,26 @@
+{
+  "name": "busfindingbot",
+  "version": "1.0.0",
+  "description": "Can easily find a bus to get home",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Vitaliy Kreminskiy",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "entities": "^2.0.0",
+    "express": "^4.17.1",
+    "iconv": "^2.3.5",
+    "iconv-lite": "^0.5.0",
+    "iso-8859-2": "^1.0.0",
+    "node-fetch": "^2.6.0",
+    "node-gzip": "^1.1.2",
+    "request": "^2.88.0",
+    "telegraf": "^3.33.3",
+    "zlib": "^1.0.5"
+  }
+}
