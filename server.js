@@ -3,9 +3,10 @@ const cheerio = require('cheerio');
 const Telegraf = require('telegraf');
 const request = require('request');
 const iconv = require('iconv-lite');
-const entities = require('entities');
 const bot = new Telegraf(process.env.TOKEN);
-const zlib = require('zlib');
+const express = require('express');
+const app = express();
+
 
 let endpoint = 'http://bus.com.ua/cgi-bin/tablo.pl?as=610100';
 
@@ -44,6 +45,9 @@ function beautifyRoutesData(data) {
 
     return result;
 }
+
+bot.telegram.setWebhook(`${process.env.URL}/bot${process.env.TOKEN}`);
+app.use(bot.webhookCallback(`/bot${process.env.TOKEN}`));
 
 bot.start(function(message){
     message.reply('Go home darling');
@@ -87,4 +91,13 @@ bot.command('getbuses', function(message) {
       )
 })
 
-bot.startPolling();
+app.get('/', (req, res) => {
+    res.send('My bot is running here, get out');
+});
+
+app.listen(process.env.PORT, function() {
+    console.log(`Server running on port ${process.env.PORT}`);
+});
+
+
+
