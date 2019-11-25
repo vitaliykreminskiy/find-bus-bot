@@ -11,12 +11,16 @@ let endpoint = 'http://bus.com.ua/cgi-bin/tablo.pl?as=610100';
 function getStatusIcon(status) {
     if (status.includes('На платформi')) {
         return '✅';
+    } else if (status.includes('Вiдправлено')) {
+        return '💨';
     } else {
         let status_map = {
             'У продажу': '✅',
             'Вiдмiнено': '⚠️',
             'Кв. проданi': '🤷‍♀️',
-            'По прибуттю': '⏳'
+            'По прибуттю': '⏳',
+            'Тимчасово не курсує': '🙅‍♂️',
+            'Затримка': '⌛'
         }
     
         return status_map[status];
