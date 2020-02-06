@@ -78,6 +78,8 @@ bot.command('getbuses', function (message) {
   )
 });
 
+const keyboard = new Keyboard();
+
 //command example: /findstation тернопіль
 bot.command('sethome', function (message) {
   const query = message.message.text.split(' ')[1];
@@ -96,7 +98,6 @@ bot.command('sethome', function (message) {
 
   message.session.scenario = 'home_station_search';
 
-  const keyboard = new Keyboard();
   let tmpKeysRow = [];
 
   for (let i = 0; i < result.length; i++) {
@@ -115,10 +116,16 @@ bot.command('sethome', function (message) {
 bot.command('cancel', function (message) {
   if (hasScenario(message)) {
     unsetScenario(message);
-    message.reply(translate('cancelled', message));
+    message.reply(translate('cancelled', message), null);
     return;
   }
-  message.reply(translate('nothing_to_cancel', message));
+  message.reply(translate('nothing_to_cancel', message), null);
+})
+
+bot.command('getsettings', function (message) {
+  if (message.session.home_station) {
+    message.reply(message.session.home_station);
+  }
 })
 
 bot.on('text', function (message) {
@@ -137,7 +144,7 @@ bot.on('text', function (message) {
 
       message.session.home_station = message.message.text;
       message.session.home_station_code = stationId;
-      message.reply(translate('home_station_set', message));
+      message.reply(translate('home_station_set', message), keyboard.empty());
       unsetScenario(message);
       break;
     default: 
